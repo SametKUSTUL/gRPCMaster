@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "PaymentService";
+
+service Payment {
+  rpc ProcessPayment (PaymentRequest) returns (PaymentResponse);
+  rpc CheckBalance (BalanceRequest) returns (BalanceResponse);
+  rpc ReversalPayment (ReversalPaymentRequest) returns (ReversalPaymentResponse);
+}
+
+message PaymentRequest {
+  string order_id = 1;
+  double amount = 2;
+}
+
+message PaymentResponse {
+  bool success = 1;
+  string transaction_id = 2;
+}
+
+message BalanceRequest {
+  string user_id = 1;
+}
+
+message BalanceResponse {
+  double balance = 1;
+}
+
+message ReversalPaymentRequest {
+  string transaction_id = 1;
+}
+
+message ReversalPaymentResponse {
+  bool success = 1;
+  string message = 2;
+}

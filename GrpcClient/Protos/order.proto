@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "OrderService";
+
+service Order {
+  rpc CreateOrder (OrderRequest) returns (OrderResponse);
+}
+
+message OrderRequest {
+  string product_name = 1;
+  double price = 2;
+}
+
+message OrderResponse {
+  string order_id = 1;
+  string status = 2;
+}

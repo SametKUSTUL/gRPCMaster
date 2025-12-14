@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  payment-service:
+    build:
+      context: .
+      dockerfile: PaymentService/Dockerfile
+    ports:
+      - "5055:5055"
+    environment:
+      - ASPNETCORE_URLS=http://+:5055
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - grpc-network
+
+  order-service:
+    build:
+      context: .
+      dockerfile: OrderService/Dockerfile
+    ports:
+      - "5056:5056"
+    environment:
+      - ASPNETCORE_URLS=http://+:5056
+      - ASPNETCORE_ENVIRONMENT=Development
+      - PaymentService__Url=http://payment-service:5055
+    depends_on:
+      - payment-service
+    networks:
+      - grpc-network
+
+networks:
+  grpc-network:
+    driver: bridge

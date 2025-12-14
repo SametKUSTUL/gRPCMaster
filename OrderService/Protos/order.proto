@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "OrderService";
+
+service Order {
+  rpc CreateOrder (OrderRequest) returns (OrderResponse);
+  rpc DeleteOrder (DeleteOrderRequest) returns (DeleteOrderResponse);
+}
+
+message OrderRequest {
+  string product_name = 1;
+  double price = 2;
+}
+
+message OrderResponse {
+  string order_id = 1;
+  string status = 2;
+}
+
+
+message DeleteOrderRequest {
+  string product_name = 1;
+  string transactionId=2;
+}
+
+message DeleteOrderResponse {
+  bool IsDeleted = 1;
+}
