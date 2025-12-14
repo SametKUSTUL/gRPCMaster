@@ -108,6 +108,8 @@ grpcui -plaintext localhost:5055
 # OrderService test
 grpcui -plaintext localhost:5056
 ```
+<img width="544" height="866" alt="image" src="https://github.com/user-attachments/assets/e8c308a5-fb43-47da-a142-e911720c43db" />
+
 
 Tarayıcıda otomatik açılır, Swagger benzeri UI ile test edebilirsin.
 
